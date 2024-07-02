@@ -87,11 +87,11 @@ public extension ZYVisionDetectorVideoRecorder {
         let videoQueue = DispatchQueue(label: "com.xxxx.videoqueue")
         
         self.zyvision_videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
-//        self.photoOutput.isHighResolutionCaptureEnabled = true
+        
         
         self.zyvision_photoSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         self.zyvision_photoSetting.flashMode = .auto
-        
+        self.zyvision_photoOutput.isHighResolutionCaptureEnabled = true
         self.zyvision_photoOutput.photoSettingsForSceneMonitoring  = self.zyvision_photoSetting
 
         if(self.zyvision_session.canAddInput(self.zyvision_inputDevice!)) {

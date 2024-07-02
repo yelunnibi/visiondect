@@ -31,6 +31,7 @@ public protocol ZYVisionCameraCustomFocus : NSObjectProtocol {
 
 public extension ZYVisionCameraCustomFocus {
     
+    @available(iOS 13.0, *)
     func zyvision_setupFocusView() {
         self.zyvision_focousView = ZYVisionCameraFocusView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         
