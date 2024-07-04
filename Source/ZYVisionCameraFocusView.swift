@@ -54,6 +54,9 @@ public extension ZYVisionCameraCustomFocus {
         
         self.tmpzoom = 0
         self.videozoom = 0
+        
+        
+       
     }
 }
 

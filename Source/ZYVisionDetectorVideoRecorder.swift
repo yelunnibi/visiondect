@@ -79,6 +79,7 @@ public extension ZYVisionDetectorVideoRecorder {
             print("device")
             return
         }
+       
         self.zyvision_inputDevice = input
         
         self.zyvision_photoOutput = AVCapturePhotoOutput()
@@ -132,6 +133,10 @@ public extension ZYVisionDetectorVideoRecorder {
 //        self.preViewimageView.isUserInteractionEnabled = true
         self.zyvision_setupFocusView()
         
+        try? self.zyvision_device.lockForConfiguration()
+        self.zyvision_device.focusMode = .continuousAutoFocus
+        self.zyvision_device.unlockForConfiguration()
+        
         self.zyvision_setupSessionDone()
     }
     
@@ -180,7 +185,7 @@ public extension ZYVisionDetectorVideoRecorder {
         try? self.zyvision_device.lockForConfiguration()
         let point = tapGes.location(in: self.zyvision_previewView)
         self.zyvision_device.focusPointOfInterest = point
-        self.zyvision_device.focusMode = .autoFocus
+        self.zyvision_device.focusMode = .continuousAutoFocus
         self.zyvision_device.unlockForConfiguration()
     }
     
