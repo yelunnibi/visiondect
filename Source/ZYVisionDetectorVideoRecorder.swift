@@ -184,8 +184,13 @@ public extension ZYVisionDetectorVideoRecorder {
     func cameraFocusOnTapPreviewView(tapGes: UITapGestureRecognizer) {
         try? self.zyvision_device.lockForConfiguration()
         let point = tapGes.location(in: self.zyvision_previewView)
-        self.zyvision_device.focusPointOfInterest = point
-        self.zyvision_device.focusMode = .continuousAutoFocus
+        
+        let x = point.y / self.zyvision_previewView.bounds.height
+        let y = 1.0 - point.x / self.zyvision_previewView.bounds.width
+        
+        let focusPoint = CGPoint(x: x, y: y)
+        self.zyvision_device.focusPointOfInterest = focusPoint
+        self.zyvision_device.focusMode = .autoFocus
         self.zyvision_device.unlockForConfiguration()
     }
     
